@@ -1,0 +1,77 @@
+---
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const liens = [
+  { href: `${base}/`, label: 'Accueil' },
+  { href: `${base}/a-propos/`, label: 'À propos' },
+  { href: `${base}/accompagnements/`, label: 'Accompagnements' },
+  { href: `${base}/contact/`, label: 'Contact' },
+];
+
+// `Astro.url.pathname` inclut le base de déploiement (ex. « /evidence/contact/ ») :
+// on compare les liens sur le chemin *sans* le base.
+const sansBase = (chemin: string) =>
+  base && chemin.startsWith(base) ? chemin.slice(base.length) || '/' : chemin;
+
+const courant = sansBase(Astro.url.pathname);
+const estActif = (href: string) => {
+  const cible = sansBase(href);
+  return cible === '/' ? courant === '/' : courant.startsWith(cible);
+};
+---
+
+<header class="border-b border-sand-200 bg-sand-50/90 backdrop-blur supports-[backdrop-filter]:sticky supports-[backdrop-filter]:top-0 supports-[backdrop-filter]:z-40">
+  <div class="mx-auto flex max-w-5xl items-center justify-between gap-6 px-5 py-4">
+    <a href={`${base}/`} class="group flex flex-col leading-tight">
+      <span class="font-serif text-lg text-ink">Amandine Barlatier</span>
+      <span class="text-xs uppercase tracking-[0.14em] text-ink-soft">Coach professionnelle</span>
+    </a>
+
+    <nav aria-label="Navigation principale" class="hidden items-center gap-7 text-sm md:flex">
+      {
+        liens.map((l) => (
+          <a
+            href={l.href}
+            aria-current={estActif(l.href) ? 'page' : undefined}
+            class:list={[
+              'transition-colors hover:text-petrol-600',
+              estActif(l.href) ? 'text-petrol-600' : 'text-ink-soft',
+            ]}
+          >
+            {l.label}
+          </a>
+        ))
+      }
+      <a
+        href={`${base}/contact/`}
+        class="rounded-full bg-petrol-600 px-4 py-2 font-medium text-sand-50 transition-colors hover:bg-petrol-700"
+      >
+        Réserver un appel
+      </a>
+    </nav>
+
+    <details class="md:hidden">
+      <summary class="cursor-pointer list-none rounded border border-sand-300 px-3 py-1.5 text-sm text-ink-soft">
+        Menu
+      </summary>
+      <nav aria-label="Navigation principale (mobile)" class="absolute right-5 z-50 mt-2 w-56 rounded-lg border border-sand-200 bg-sand-50 p-2 shadow-lg">
+        {
+          liens.map((l) => (
+            <a
+              href={l.href}
+              aria-current={estActif(l.href) ? 'page' : undefined}
+              class:list={[
+                'block rounded px-3 py-2 text-sm',
+                estActif(l.href) ? 'bg-sand-100 text-petrol-600' : 'text-ink-soft hover:bg-sand-100',
+              ]}
+            >
+              {l.label}
+            </a>
+          ))
+        }
+        <a href={`${base}/contact/`} class="mt-1 block rounded bg-petrol-600 px-3 py-2 text-center text-sm text-sand-50">
+          Réserver un appel
+        </a>
+      </nav>
+    </details>
+  </div>
+</header>

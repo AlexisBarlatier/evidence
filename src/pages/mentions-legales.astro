@@ -1,0 +1,68 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+// Les champs marqués « à compléter » doivent être remplis avant la mise en ligne.
+// Identité légale : c'est le nom d'état civil qui doit figurer ici (Amandine Fouque),
+// le nom d'usage professionnel (Amandine Barlatier) étant utilisé partout ailleurs sur le site.
+---
+
+<BaseLayout
+  title="Mentions légales"
+  description="Mentions légales, éditeur et hébergeur du site d'Amandine Barlatier, coach professionnelle."
+  path="/mentions-legales/"
+>
+  <article class="mx-auto max-w-3xl px-5 pb-16 pt-16">
+    <h1 class="text-4xl">Mentions légales</h1>
+
+    <div class="prose-page mt-10">
+      <h2>Éditeur du site</h2>
+      <p>
+        <strong>Amandine Fouque</strong> — nom d'usage professionnel : Amandine Barlatier.<br />
+        Activité : coaching professionnel (accompagnement individuel, d'équipe et d'organisation).<br />
+        Adresse : <em>à compléter</em><br />
+        SIRET : <em>à compléter</em><br />
+        Email de contact : <em>à compléter</em><br />
+        Téléphone : <em>à compléter</em>
+      </p>
+
+      <h2>Directeur de la publication</h2>
+      <p>Amandine Fouque.</p>
+
+      <h2>Hébergement</h2>
+      <p>
+        Ce site est hébergé par : <em>à compléter (nom, adresse, téléphone de l'hébergeur)</em>.
+      </p>
+
+      <h2>Propriété intellectuelle</h2>
+      <p>
+        L'ensemble des contenus de ce site (textes, photographies, éléments graphiques) est protégé par
+        le droit d'auteur. Toute reproduction, même partielle, est interdite sans autorisation écrite
+        préalable.
+      </p>
+
+      <h2>Données personnelles</h2>
+      <p>
+        Les informations transmises via le formulaire de contact sont utilisées uniquement pour répondre
+        à la demande de la personne qui écrit. Elles ne sont ni cédées, ni revendues, ni utilisées à des
+        fins commerciales. Elles sont conservées le temps nécessaire au traitement de la demande, puis
+        supprimées.
+      </p>
+      <p>
+        Conformément au RGPD, vous disposez d'un droit d'accès, de rectification, d'effacement et
+        d'opposition sur vos données. Pour l'exercer, écrivez à : <em>à compléter</em>.
+      </p>
+      <p>
+        Ce site n'utilise aucun cookie de mesure d'audience ni de publicité.
+      </p>
+
+      <h2>Responsabilité</h2>
+      <p>
+        Les informations diffusées sur ce site sont fournies à titre indicatif. Elles ne constituent pas
+        un engagement contractuel et ne se substituent en aucun cas à un accompagnement professionnel
+        adapté à une situation individuelle.
+      </p>
+
+      <p class="mt-10 text-sm text-ink-soft">Dernière mise à jour : <em>à compléter</em>.</p>
+    </div>
+  </article>
+</BaseLayout>

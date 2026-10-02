@@ -1,0 +1,42 @@
+name: Déployer sur GitHub Pages
+
+on:
+  # Déploiement à chaque push sur main
+  push:
+    branches: [main]
+  # Permet aussi un déclenchement manuel depuis l'onglet Actions
+  workflow_dispatch:
+
+# Autorise le job à cloner le dépôt et à publier une page
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Un seul déploiement à la fois ; les pushs suivants annulent le précédent en cours
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Récupérer le dépôt
+        uses: actions/checkout@v7
+      - name: Installer, construire et préparer le site
+        uses: withastro/action@v6
+        with:
+          # Astro 7 exige Node >= 22.12.0
+          node-version: 24
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Déployer sur GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5

@@ -1,0 +1,90 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Contact"
+  description="Réservez un appel découverte de 30 minutes, sans engagement, pour faire le point sur votre situation. Réponse sous 48 h ouvrées."
+  path="/contact/"
+>
+  <section class="mx-auto max-w-5xl px-5 pb-4 pt-16">
+    <p class="text-xs uppercase tracking-[0.18em] text-petrol-600">Contact</p>
+    <h1 class="mt-4 max-w-3xl text-4xl leading-[1.15] sm:text-5xl">Appel découverte — 30 minutes, sans engagement.</h1>
+    <p class="mt-5 max-w-2xl text-lg text-ink-soft">
+      Le premier échange sert à comprendre votre situation et à vérifier que nous sommes faits pour
+      travailler ensemble. Si je ne suis pas la bonne personne, je vous le dis.
+    </p>
+  </section>
+
+  <section class="mx-auto grid max-w-5xl gap-12 px-5 py-12 md:grid-cols-2">
+    <!-- RESERVATION -->
+    <div>
+      <h2 class="font-serif text-2xl">Réserver un créneau</h2>
+      <p class="mt-3 text-ink-soft">
+        Choisissez directement un horaire qui vous convient dans mon agenda.
+      </p>
+
+      <!-- TODO: intégrer le lien Cal.com / Calendly (voir contenu/A-COMPLETER.md) -->
+      <div class="mt-6 rounded-lg border border-dashed border-sand-300 bg-sand-100 p-8 text-center text-sm text-ink-soft">
+        <p class="font-medium text-ink">Agenda de réservation à connecter</p>
+        <p class="mt-2">Emplacement prévu pour Cal.com ou Calendly.</p>
+      </div>
+
+      <h2 class="mt-12 font-serif text-2xl">Écrire</h2>
+      <ul class="mt-3 space-y-3 text-ink-soft">
+        <!-- TODO: compléter (email pro, LinkedIn) -->
+        <li>Email pro : <span class="text-ink">à venir</span></li>
+        <li>LinkedIn : <span class="text-ink">à venir</span></li>
+      </ul>
+
+      <h2 class="mt-12 font-serif text-2xl">Zone d'intervention</h2>
+      <p class="mt-3 text-ink-soft">Sur site, en entreprise ou en visio — <span class="text-ink">à préciser</span>.</p>
+
+      <p class="mt-12 text-sm text-ink-soft">Je réponds personnellement, sous 48 h ouvrées.</p>
+    </div>
+
+    <!-- FORMULAIRE -->
+    <div>
+      <h2 class="font-serif text-2xl">Ou écrivez-moi directement</h2>
+      <p class="mt-3 text-ink-soft">
+        Quelques lignes suffisent : ce que vous vivez, et ce que vous aimeriez qui change.
+      </p>
+
+      <!--
+        TODO: brancher l'endpoint du formulaire (Formspree ou Basin) :
+        <form action="https://formspree.io/f/XXXXXXX" method="POST" ...>
+        Penser à ajouter la mention RGPD ci-dessous.
+      -->
+      <form class="mt-6 space-y-4" method="POST" action="#">
+        <div>
+          <label for="nom" class="block text-sm font-medium">Nom et prénom</label>
+          <input id="nom" name="nom" type="text" required autocomplete="name"
+            class="mt-1 w-full rounded border border-sand-300 bg-white px-3 py-2.5 outline-none focus:border-petrol-600" />
+        </div>
+        <div>
+          <label for="email" class="block text-sm font-medium">Email</label>
+          <input id="email" name="email" type="email" required autocomplete="email"
+            class="mt-1 w-full rounded border border-sand-300 bg-white px-3 py-2.5 outline-none focus:border-petrol-600" />
+        </div>
+        <div>
+          <label for="organisation" class="block text-sm font-medium">Entreprise / fonction <span class="text-ink-soft">(optionnel)</span></label>
+          <input id="organisation" name="organisation" type="text" autocomplete="organization"
+            class="mt-1 w-full rounded border border-sand-300 bg-white px-3 py-2.5 outline-none focus:border-petrol-600" />
+        </div>
+        <div>
+          <label for="message" class="block text-sm font-medium">Votre message</label>
+          <textarea id="message" name="message" rows="6" required
+            class="mt-1 w-full rounded border border-sand-300 bg-white px-3 py-2.5 outline-none focus:border-petrol-600"></textarea>
+        </div>
+        <button type="submit"
+          class="w-full rounded-full bg-petrol-600 px-6 py-3 font-medium text-sand-50 transition-colors hover:bg-petrol-700">
+          Envoyer
+        </button>
+        <p class="text-xs text-ink-soft">
+          Les informations transmises servent uniquement à répondre à votre demande. Elles ne sont ni
+          cédées ni revendues, et sont conservées le temps nécessaire à cet échange.
+        </p>
+      </form>
+    </div>
+  </section>
+</BaseLayout>

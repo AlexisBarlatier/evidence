@@ -1,0 +1,61 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+interface Props {
+  title: string;
+  description: string;
+  /** URL canonique relative, ex. "/a-propos/" */
+  path?: string;
+}
+
+const { title, description, path = Astro.url.pathname } = Astro.props;
+
+const siteName = 'Amandine Barlatier — Coach professionnelle';
+const fullTitle = title === siteName ? title : `${title} | Amandine Barlatier`;
+// `path` vient des pages en absolu (« /a-propos/ ») : on le préfixe du base, sauf s'il
+// le contient déjà (cas du défaut `Astro.url.pathname`).
+const cheminCanonique = base && !path.startsWith(base) ? `${base}${path}` : path;
+const canonical = new URL(cheminCanonique, Astro.site ?? Astro.url);
+---
+
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={siteName} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:locale" content="fr_FR" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="icon" href={`${base}/favicon.svg`} type="image/svg+xml" />
+    <meta name="theme-color" content="#0f4c4a" />
+    <link rel="sitemap" href={`${base}/sitemap-index.xml`} />
+  </head>
+  <body class="flex min-h-screen flex-col">
+    <a
+      href="#contenu"
+      class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded focus:bg-petrol-600 focus:px-4 focus:py-2 focus:text-sand-50"
+    >
+      Aller au contenu
+    </a>
+
+    <Header />
+
+    <main id="contenu" class="flex-1">
+      <slot />
+    </main>
+
+    <Footer />
+  </body>
+</html>

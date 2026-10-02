@@ -1,0 +1,186 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const accompagnements = (await getCollection('accompagnements', ({ data }) => !data.brouillon))
+  .sort((a, b) => a.data.ordre - b.data.ordre);
+---
+
+<BaseLayout
+  title="Amandine Barlatier — Coach professionnelle"
+  description="Coaching professionnel pour managers, dirigeants et équipes. Un espace exigeant et bienveillant pour transformer les tensions en coopération. Appel découverte de 30 minutes."
+  path="/"
+>
+  <!-- HERO -->
+  <section class="mx-auto max-w-5xl px-5 pb-16 pt-20 sm:pt-28">
+    <div class="grid items-center gap-12 md:grid-cols-[1.15fr_0.85fr]">
+      <div>
+        <p class="mb-5 text-xs uppercase tracking-[0.18em] text-petrol-600">
+          Coaching professionnel · Individuel, équipe &amp; organisation
+        </p>
+        <h1 class="text-4xl leading-[1.1] sm:text-5xl">
+          Ce qui fait réussir un projet, c'est la qualité de ce qui se joue entre les personnes.
+        </h1>
+        <p class="mt-7 max-w-xl text-lg text-ink-soft">
+          J'accompagne les managers, les dirigeants et leurs équipes : comprendre ce qui bloque,
+          remettre de la clarté dans les échanges, et retrouver une énergie collective au service du projet.
+        </p>
+
+        <div class="mt-9 flex flex-wrap items-center gap-4">
+          <a
+            href={`${base}/contact/`}
+            class="rounded-full bg-petrol-600 px-6 py-3 font-medium text-sand-50 transition-colors hover:bg-petrol-700"
+          >
+            Réserver un appel découverte
+          </a>
+          <a
+            href={`${base}/accompagnements/`}
+            class="rounded-full border border-sand-300 px-6 py-3 font-medium text-ink transition-colors hover:border-petrol-600 hover:text-petrol-600"
+          >
+            Voir les accompagnements
+          </a>
+        </div>
+        <p class="mt-4 text-sm text-ink-soft">30 minutes, sans engagement. Si je ne suis pas la bonne personne, je vous le dis.</p>
+      </div>
+
+      <div class="order-first md:order-none">
+        <!-- Provisoire : version fournie (voir contenu/A-COMPLETER.md — portrait pro à refaire) -->
+        <div class="aspect-[3/4] w-full overflow-hidden rounded-lg border border-sand-200 bg-sand-100">
+          <img
+            src={`${base}/images/amandine-barlatier-portrait.jpg`}
+            alt="Portrait d'Amandine Barlatier"
+            width="768"
+            height="1024"
+            class="h-full w-full object-cover"
+            loading="eager"
+            decoding="async"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- POUR QUI -->
+  <section class="border-y border-sand-200 bg-white">
+    <div class="mx-auto max-w-5xl px-5 py-16">
+      <h2 class="text-3xl">Pour qui j'accompagne</h2>
+      <div class="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        <div>
+          <h3 class="font-serif text-xl">Les managers et dirigeants</h3>
+          <p class="mt-2 text-ink-soft">
+            Vous portez une équipe, un projet, une responsabilité. Vous voulez comprendre quel leader
+            vous êtes — et celui que vous voulez devenir.
+          </p>
+        </div>
+        <div>
+          <h3 class="font-serif text-xl">Les équipes</h3>
+          <p class="mt-2 text-ink-soft">
+            Vous voulez travailler mieux ensemble : une communication plus fluide, des valeurs partagées,
+            un projet commun, une vraie compréhension des enjeux de la direction.
+          </p>
+        </div>
+        <div>
+          <h3 class="font-serif text-xl">L'organisation</h3>
+          <p class="mt-2 text-ink-soft">
+            Vous êtes en transformation et vous cherchez un appui extérieur pour accompagner le
+            changement sans le subir.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CE QUE VOUS VENEZ CHERCHER -->
+  <section class="mx-auto max-w-5xl px-5 py-16">
+    <h2 class="text-3xl">Ce que vous venez chercher</h2>
+    <div class="mt-10 grid gap-12 md:grid-cols-2">
+      <div>
+        <p class="mb-4 text-xs uppercase tracking-[0.16em] text-petrol-600">Côté manager</p>
+        <ul class="space-y-3 text-ink-soft">
+          <li>Comprendre mon équipe et faire passer mes messages sans malentendus</li>
+          <li>Dégager du temps pour être réellement à l'écoute</li>
+          <li>Apaiser les tensions, améliorer la performance collective</li>
+          <li>Un espace de parole sécurisé pour décider</li>
+          <li>Grandir dans mon poste et prendre des risques en conscience</li>
+        </ul>
+      </div>
+      <div>
+        <p class="mb-4 text-xs uppercase tracking-[0.16em] text-petrol-600">Côté équipe</p>
+        <ul class="space-y-3 text-ink-soft">
+          <li>Travailler mieux ensemble</li>
+          <li>Porter les mêmes valeurs</li>
+          <li>Comprendre les enjeux de la direction</li>
+          <li>Plus de transparence dans les échanges avec le manager</li>
+          <li>Un projet commun, partagé</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- CE QUI CHANGE -->
+  <section class="border-y border-sand-200 bg-petrol-600 text-sand-50">
+    <div class="mx-auto max-w-4xl px-5 py-16 text-center">
+      <p class="font-serif text-2xl sm:text-3xl">« On ne naît pas manager, on le devient. »</p>
+      <p class="mx-auto mt-6 max-w-2xl text-petrol-50/90">
+        Se faire accompagner n'est pas un aveu de faiblesse : c'est une façon de grandir, au même titre
+        qu'une formation. L'énergie de l'équipe cesse d'être dispersée — elle est mise au service du projet.
+      </p>
+    </div>
+  </section>
+
+  <!-- DEROULE -->
+  <section class="mx-auto max-w-5xl px-5 py-16">
+    <h2 class="text-3xl">Comment ça se passe</h2>
+    <ol class="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+      {
+        [
+          ['Appel découverte', "30 minutes pour clarifier votre situation et votre objectif. Aucun engagement."],
+          ['Cadrage', 'Nous définissons le cadre, le rythme et les indicateurs de réussite.'],
+          ['Accompagnement', 'Séances individuelles ou collectives, selon les besoins.'],
+          ['Ancrage', "Bilan, points de vigilance, et l'autonomie retrouvée."],
+        ].map(([titre, texte], i) => (
+          <li>
+            <p class="font-serif text-3xl text-sand-300">0{i + 1}</p>
+            <p class="mt-2 font-medium">{titre}</p>
+            <p class="mt-1 text-sm text-ink-soft">{texte}</p>
+          </li>
+        ))
+      }
+    </ol>
+  </section>
+
+  <!-- ACCOMPAGNEMENTS -->
+  <section class="border-t border-sand-200 bg-white">
+    <div class="mx-auto max-w-5xl px-5 py-16">
+      <h2 class="text-3xl">Les accompagnements</h2>
+      <div class="mt-10 grid gap-6 md:grid-cols-3">
+        {
+          accompagnements.map((a) => (
+            <a
+              href={`${base}/accompagnements/${a.id}/`}
+              class="group flex flex-col rounded-lg border border-sand-200 bg-sand-50 p-6 transition-colors hover:border-petrol-600"
+            >
+              <p class="text-xs uppercase tracking-[0.14em] text-ink-soft">{a.data.pourQui}</p>
+              <h3 class="mt-3 font-serif text-xl group-hover:text-petrol-600">{a.data.titre}</h3>
+              <p class="mt-3 flex-1 text-sm text-ink-soft">{a.data.resume}</p>
+              <span class="mt-5 text-sm font-medium text-petrol-600">En savoir plus →</span>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section class="mx-auto max-w-3xl px-5 py-20 text-center">
+    <h2 class="text-3xl">Vous ne savez pas encore par où commencer ?</h2>
+    <p class="mt-4 text-ink-soft">Parlons-en 30 minutes. C'est gratuit, et ça permet de savoir si je suis la bonne personne.</p>
+    <a
+      href={`${base}/contact/`}
+      class="mt-8 inline-block rounded-full bg-petrol-600 px-7 py-3 font-medium text-sand-50 transition-colors hover:bg-petrol-700"
+    >
+      Réserver un appel découverte
+    </a>
+  </section>
+</BaseLayout>

@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+
+# TODO: mettre à jour l'URL une fois le domaine réservé.
+# URL actuelle (GitHub Pages) :
+Sitemap: https://alexisbarlatier.github.io/evidence/sitemap-index.xml
