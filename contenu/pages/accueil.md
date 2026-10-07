@@ -5,6 +5,9 @@
 **H1 (variante retenue à valider)**
 > Évoluer en leader, grandir en équipe, avancer ensemble vers l'autonomie.
 
+**Ligne d'appui (sous le H1)**
+> Une dynamique qui se construit ensemble.
+
 **Sous-titre**
 Coaching professionnel pour managers, dirigeants et équipes.
 Un espace exigeant et bienveillant pour transformer les tensions en coopération.
