@@ -25,7 +25,7 @@ Un espace exigeant et bienveillant pour transformer les tensions en coopération
 Vous portez une équipe, un projet, une responsabilité. Vous voulez comprendre quel leader vous êtes — et celui que vous voulez devenir.
 
 **Les équipes**
-Vous voulez travailler mieux ensemble : une communication plus fluide, des valeurs partagées, un projet commun, une vraie compréhension des enjeux de la direction.
+Vous voulez travailler mieux ensemble : une communication plus fluide, des valeurs partagées, un projet commun, une vraie compréhension des enjeux de la direction — y compris quand il s'agit d'accueillir une personne en situation de handicap.
 
 **L'organisation**
 Vous êtes en transformation et vous cherchez un appui extérieur pour accompagner le changement sans le subir.
@@ -47,6 +47,7 @@ Vous êtes en transformation et vous cherchez un appui extérieur pour accompagn
 - Comprendre les enjeux de la direction
 - Plus de transparence dans les échanges avec le manager
 - Un projet commun
+- Accueillir et intégrer une personne en situation de handicap
 
 ---
 
