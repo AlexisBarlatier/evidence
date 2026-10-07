@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Parcours d'inclusion et de maintien dans l'emploi — Amandine Barlatier &amp; Anaïs Rognard</title>
+<style>
+  :root {
+    --petrol-600: #0f4c4a;
+    --petrol-500: #17625f;
+    --petrol-50: #eef4f4;
+    --ink: #1b1a18;
+    --ink-soft: #4a4640;
+    --sand-50: #faf8f5;
+    --sand-100: #f4efe8;
+    --sand-200: #e8e0d5;
+    --sand-300: #d6cabb;
+    --serif: Georgia, "Iowan Old Style", "Palatino Linotype", "Liberation Serif", serif;
+    --sans: system-ui, "Segoe UI", Roboto, "Liberation Sans", Arial, sans-serif;
+  }
+
+  @page { size: A4; margin: 16mm 16mm 14mm 16mm; }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: var(--sans);
+    color: var(--ink);
+    font-size: 10.5pt;
+    line-height: 1.55;
+    background: #fff;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  h1, h2, h3 { font-family: var(--serif); font-weight: 400; letter-spacing: -0.01em; line-height: 1.15; margin: 0; }
+  p { margin: 0 0 0.7em; }
+  ul { margin: 0 0 0.7em; padding-left: 1.1em; }
+  li { margin-bottom: 0.25em; }
+
+  .page { page-break-after: always; }
+  .page:last-child { page-break-after: auto; }
+
+  .kicker {
+    font-size: 8pt; text-transform: uppercase; letter-spacing: 0.16em;
+    color: var(--petrol-500); margin-bottom: 0.6em;
+  }
+  .lead { font-size: 12pt; color: var(--ink-soft); }
+  h1.big { font-size: 27pt; margin-bottom: 0.35em; }
+  h2.section { font-size: 19pt; margin-bottom: 0.5em; }
+  h3 { font-size: 12pt; margin-bottom: 0.25em; color: var(--petrol-600); }
+  .rule { height: 2px; background: var(--petrol-600); width: 46mm; margin: 0.7em 0 1.3em; }
+
+  /* Couverture */
+  .cover-photo {
+    width: 100%; height: 108mm; object-fit: cover; object-position: center 30%;
+    border-radius: 3px; margin-bottom: 9mm;
+  }
+  .cover-title { font-family: var(--serif); font-size: 30pt; line-height: 1.1; margin-bottom: 0.25em; }
+  .cover-sub { font-size: 12pt; color: var(--ink-soft); max-width: 118mm; }
+  .cover-authors {
+    margin-top: 9mm; padding-top: 4mm; border-top: 1px solid var(--sand-200);
+    display: flex; gap: 10mm; font-size: 10pt;
+  }
+  .cover-authors strong { font-family: var(--serif); font-size: 11pt; display: block; }
+  .cover-authors span { color: var(--ink-soft); }
+
+  /* Grille chiffres */
+  .figures { display: grid; grid-template-columns: 1fr 1fr; gap: 5mm 6mm; margin-top: 2mm; }
+  .figure { background: var(--sand-50); border: 1px solid var(--sand-200); border-radius: 3px; padding: 4mm; }
+  .figure .num { font-family: var(--serif); font-size: 20pt; color: var(--petrol-600); line-height: 1; }
+  .figure p { margin: 0.35em 0 0; font-size: 9.5pt; color: var(--ink-soft); }
+  .src { font-size: 7.5pt; color: #8a8479; }
+
+  /* Cartes */
+  .card { border: 1px solid var(--sand-200); border-radius: 3px; padding: 4.5mm; margin-bottom: 4mm; background: #fff; }
+  .card.tinted { background: var(--sand-50); }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 5mm; }
+  .quote { font-family: var(--serif); font-size: 12pt; color: var(--petrol-600); line-height: 1.35; }
+  .steps { display: grid; grid-template-columns: repeat(5, 1fr); gap: 2.5mm; margin-top: 2mm; }
+  .step { border-top: 2px solid var(--petrol-600); padding-top: 2.5mm; }
+  .step .n { font-family: var(--serif); font-size: 15pt; color: var(--sand-300); display: block; line-height: 1; margin-bottom: 1mm; }
+  .step strong { display: block; font-size: 9.5pt; margin-bottom: 1mm; }
+  .step p { font-size: 8.5pt; color: var(--ink-soft); margin: 0; }
+
+  .band {
+    background: var(--petrol-600); color: #fff; border-radius: 3px;
+    padding: 6mm; margin: 5mm 0;
+  }
+  .band h2, .band h3 { color: #fff; }
+  .band p { color: rgba(255,255,255,0.92); margin: 0; }
+
+  .profile { display: grid; grid-template-columns: 34mm 1fr; gap: 5mm; margin-bottom: 6mm; }
+  .profile img, .profile .monogram {
+    width: 34mm; height: 34mm; border-radius: 50%; object-fit: cover; object-position: center 25%;
+    border: 1px solid var(--sand-200);
+  }
+  .profile .monogram {
+    background: var(--petrol-50); color: var(--petrol-600);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--serif); font-size: 20pt; letter-spacing: 0.02em;
+  }
+  .profile h3 { font-size: 13pt; color: var(--ink); margin-bottom: 0.1em; }
+  .profile .role { font-size: 9pt; color: var(--petrol-500); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5em; }
+  .profile .sub { font-family: var(--serif); font-size: 11pt; color: var(--petrol-600); margin-bottom: 0.4em; }
+
+  .sources { font-size: 8.5pt; color: var(--ink-soft); }
+  .sources li { margin-bottom: 0.45em; }
+  .footer {
+    margin-top: 6mm; padding-top: 3mm; border-top: 1px solid var(--sand-200);
+    font-size: 8pt; color: #8a8479; display: flex; justify-content: space-between;
+  }
+  .no-break { page-break-inside: avoid; }
+</style>
+</head>
+<body>
+
+<!-- 1. COUVERTURE -->
+<section class="page">
+  <img class="cover-photo" src="__ATELIER__" alt="Amandine Barlatier en atelier avec une équipe">
+  <p class="kicker">Parcours d'accompagnement d'équipe</p>
+  <h2 class="cover-title">Parcours d'inclusion et de maintien dans l'emploi</h2>
+  <p class="cover-sub">Accompagner les équipes qui accueillent une personne en situation de handicap — pour une organisation inclusive, durable et performante.</p>
+  <div class="cover-authors">
+    <div><strong>Amandine Barlatier</strong><span>Coach professionnelle<br>20 ans de direction d'entreprise</span></div>
+    <div><strong>Anaïs Rognard</strong><span>Ergothérapeute<br>Accessibilité &amp; troubles du neurodéveloppement</span></div>
+  </div>
+</section>
+
+<!-- 2. CONTEXTE -->
+<section class="page">
+  <p class="kicker">Le contexte</p>
+  <h2 class="section">Un sujet que les entreprises ne peuvent plus traiter par le seul prisme de l'obligation</h2>
+  <div class="rule"></div>
+
+  <div class="figures">
+    <div class="figure">
+      <p class="num">12 millions</p>
+      <p>de personnes concernées par le handicap en France, soit environ 1 personne sur 5.</p>
+      <p class="src">Source : Agefiph, « Les fondamentaux du handicap ».</p>
+    </div>
+    <div class="figure">
+      <p class="num">80 %</p>
+      <p>des handicaps sont invisibles et surviennent au cours de la vie — accident, maladie, usure professionnelle.</p>
+      <p class="src">Source : Agefiph ; Mon Parcours Handicap (portail du Gouvernement).</p>
+    </div>
+    <div class="figure">
+      <p class="num">6 %</p>
+      <p>C'est l'obligation d'emploi des travailleurs handicapés pour les entreprises de 20 salariés et plus.</p>
+      <p class="src">Source : loi du 10 juillet 1987 ; Urssaf.</p>
+    </div>
+    <div class="figure">
+      <p class="num">4,0 %</p>
+      <p>des effectifs assujettis : le taux d'emploi constaté en 2024 (5,1 % au sens légal de l'obligation), encore loin des 6 %.</p>
+      <p class="src">Source : DARES, « L'obligation d'emploi des travailleurs handicapés en 2024 », 13 novembre 2025.</p>
+    </div>
+  </div>
+
+  <div class="two-col" style="margin-top:5mm">
+    <div class="card tinted">
+      <h3>Côté entreprises</h3>
+      <ul>
+        <li>Une obligation légale de 6 % rarement atteinte, et une contribution annuelle versée à l'Agefiph à la clé.</li>
+        <li>Un signal de plus en plus scruté dans les indicateurs extra-financiers (ESG, RSE).</li>
+        <li>Une culture managériale qui se joue sur le terrain, dans l'équipe qui accueille.</li>
+      </ul>
+    </div>
+    <div class="card tinted">
+      <h3>Côté personnes</h3>
+      <ul>
+        <li>Parmi les personnes reconnues handicapées, 29 % sont en emploi, contre 66 % de l'ensemble de la population.</li>
+        <li>Elles sont aussi deux fois plus souvent au chômage : 24 %, contre 12 %.</li>
+        <li>Un parcours de vie fait de ruptures, où l'environnement de travail compte autant que la capacité.</li>
+      </ul>
+      <p class="src" style="margin:0">Source : DREES, données 2023 (via Vie-publique.fr).</p>
+    </div>
+  </div>
+
+  <div class="band no-break">
+    <p><strong>Ce que l'obligation ne dit pas :</strong> recruter une personne en situation de handicap est la partie visible. Sa réussite se joue dans l'équipe qui l'accueille — et c'est précisément là que les accompagnements se conduisent aujourd'hui.</p>
+  </div>
+</section>
+
+<!-- 3. FREINS -->
+<section class="page">
+  <p class="kicker">Pourquoi ça bloque encore</p>
+  <h2 class="section">Cinq freins, tous humains</h2>
+  <div class="rule"></div>
+  <p class="lead">Dans les situations que nous accompagnons, les obstacles sont rarement budgétaires. Ils sont faits de représentations, de peurs, de méconnaissances — et d'un manque d'outils donnés aux managers.</p>
+
+  <div class="two-col" style="margin-top:4mm">
+    <div class="card"><h3>Représentations sociales</h3><p>Le handicap évoqué reste souvent réduit à sa forme visible. Les peurs et les méconnaissances prennent le pas sur la réalité des situations.</p></div>
+    <div class="card"><h3>Crainte de la complexité et des coûts</h3><p>On imagine des aménagements lourds, alors que l'adaptation raisonnable est souvent modeste — et parfois organisationnelle avant d'être matérielle.</p></div>
+    <div class="card"><h3>Peur de désorganiser</h3><p>Horaires, rythme, charge : la crainte porte sur l'impact pour l'équipe, avant toute évaluation réelle de ce qui doit changer.</p></div>
+    <div class="card"><h3>Manque de formation des managers</h3><p>Beaucoup d'encadrants n'ont jamais été outillés. La bonne intention ne remplace pas une méthode.</p></div>
+    <div class="card"><h3>Inadéquation perçue</h3><p>Un poste jugé incompatible en théorie devient souvent tenable dès que l'organisation est repensée avec la personne.</p></div>
+    <div class="card"><h3>Handicap invisible</h3><p>Quand rien ne se voit, les besoins sont tus — par pudeur, par crainte d'être perçu comme insuffisant, ou parce que personne n'a posé la question.</p></div>
+  </div>
+</section>
+
+<!-- 4. CAS -->
+<section class="page">
+  <p class="kicker">Quand ça marche</p>
+  <h2 class="section">Deux exemples documentés</h2>
+  <div class="rule"></div>
+
+  <div class="card no-break">
+    <h3>Schneider Electric — un alternant malvoyant devient responsable des relations sociales</h3>
+    <p>À 29 ans, Augustin Deney, malvoyant, a rejoint Schneider Electric grâce à l'engagement de l'entreprise en matière de diversité et d'inclusion. Il bénéficie de matériel de bureau adapté : logiciel spécifique, téléagrandisseur.</p>
+    <p class="quote">« Le plus compliqué, c'est l'environnement de travail. »</p>
+    <p class="quote" style="font-size:11pt">« La sensibilisation reste un ingrédient de base : sans elle, aucune politique de diversité ne fonctionnerait. » <span style="font-family:var(--sans);font-size:9pt;color:var(--ink-soft)">Julie Legoubin</span></p>
+    <p style="margin-bottom:0"><strong>Résultats :</strong> fidélisation des talents, amélioration de la marque employeur, développement d'une culture managériale inclusive.</p>
+    <p class="src">Source : Le Parisien, Agefiph.</p>
+  </div>
+
+  <div class="card no-break">
+    <h3>Andros — une soixantaine de personnes autistes recrutées en usine</h3>
+    <p>Jugées inemployables, une soixantaine de personnes présentant un autisme sévère ont été embauchées dans l'usine d'Andros à Auneau-Bleury-Saint-Symphorien. Sur les murs des ateliers, de grands tableaux blancs rassemblent pictogrammes et photos.</p>
+    <p class="quote">« Nous y avons séquencé les tâches à réaliser avec des consignes faciles à comprendre afin que ces jeunes puissent respecter le protocole. » <span style="font-family:var(--sans);font-size:9pt;color:var(--ink-soft)">Jean-François Dufresne</span></p>
+    <p>La rigueur constatée sur certaines tâches a produit des gains économiques mesurables.</p>
+    <p style="margin-bottom:0"><strong>Résultats :</strong> amélioration de la qualité sur certaines opérations, faible turnover, gains de productivité sur des postes adaptés.</p>
+    <p class="src">Source : presse économique et associative (cas d'école documenté).</p>
+  </div>
+
+  <div class="band no-break" style="margin-bottom:0">
+    <h3 style="margin-bottom:0.3em">Pourquoi pas vous ?</h3>
+    <p>Un projet qui mobilise vos équipes et qui favorise l'ouverture d'esprit, la solidarité entre collègues, le respect de la différence, la fierté d'appartenance et la fidélisation des talents.</p>
+  </div>
+</section>
+
+<!-- 5. PROPOSITION -->
+<section class="page">
+  <p class="kicker">Ce que nous proposons</p>
+  <h2 class="section">Un accompagnement complet, de la personne à l'organisation</h2>
+  <div class="rule"></div>
+  <p class="lead">Diagnostic et adaptations concrètes de l'environnement de la personne, ateliers collectifs avec l'équipe, sensibilisation au handicap, entretiens individuels ou collectifs des managers, suivi et mesure d'impact.</p>
+
+  <div class="two-col" style="margin-top:4mm">
+    <div>
+      <h3>Nos objectifs</h3>
+      <ul>
+        <li>Sécuriser l'intégration et le maintien dans l'emploi des salariés en situation de handicap : développer l'employabilité, prévenir la désinsertion professionnelle.</li>
+        <li>Permettre à l'équipe de se rencontrer elle-même sur ce qu'elle veut être face au handicap.</li>
+        <li>Accueillir et intégrer une personne en situation de handicap au sein d'une équipe.</li>
+        <li>Faire évoluer les pratiques managériales et la culture d'entreprise, en sensibilisant aux handicaps visibles et invisibles.</li>
+        <li>Renforcer l'inclusion et la qualité de vie au travail.</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Nos publics</h3>
+      <div class="card tinted" style="margin-bottom:3mm"><strong>Salariés en situation de handicap</strong><p class="src" style="margin:0">Intégration, adaptation du poste, maintien en emploi.</p></div>
+      <div class="card tinted" style="margin-bottom:3mm"><strong>Managers et encadrants</strong><p class="src" style="margin:0">Entretiens individuels ou collectifs, montée en compétence.</p></div>
+      <div class="card tinted" style="margin-bottom:3mm"><strong>Équipe de travail</strong><p class="src" style="margin:0">Ateliers collectifs, parole encadrée, jeux de coopération.</p></div>
+      <div class="card tinted" style="margin-bottom:0"><strong>Entreprises</strong><p class="src" style="margin:0">Politique d'inclusion, culture managériale, indicateurs RSE.</p></div>
+    </div>
+  </div>
+
+  <div class="band no-break" style="margin-bottom:0">
+    <p><em>« Une équipe qui apprend à formuler ses appréhensions. » — « Comprendre les besoins pour mieux révéler les capacités. » — « Observer le travail autrement pour identifier les leviers d'une inclusion durable. » — « Formuler un avis, un ressenti, grâce à un espace pour s'exprimer, sans jugement, avec un cadre. » — « Mesurer les évolutions pour inscrire les changements dans la durée. » — « Créer une vision partagée autour de l'inclusion et de la différence. »</em></p>
+  </div>
+</section>
+
+<!-- 6. METHODE + CALENDRIER -->
+<section class="page">
+  <p class="kicker">Notre méthode</p>
+  <h2 class="section">Quatre temps, un seul fil</h2>
+  <div class="rule"></div>
+
+  <div class="two-col">
+    <div class="card"><h3>1. Diagnostiquer</h3><p>Comprendre les besoins et les enjeux — la personne, le poste, l'équipe, l'organisation.</p></div>
+    <div class="card"><h3>2. Former et informer</h3><p>Sensibilisation et formation des managers et des équipes, sur les handicaps visibles et invisibles.</p></div>
+    <div class="card"><h3>3. Agir</h3><p>Mettre en œuvre des solutions concrètes : adaptations, cadre de travail, règles du jeu collectives.</p></div>
+    <div class="card"><h3>4. Ajuster</h3><p>Améliorer en continu les pratiques à partir de ce que le terrain remonte.</p></div>
+  </div>
+
+  <h3 style="margin-top:6mm">Calendrier indicatif</h3>
+  <p>Parcours complet sur six mois. La durée de chaque étape est indicative et s'adapte à la demande.</p>
+  <div class="steps">
+    <div class="step">
+      <span class="n">01</span>
+      <strong>Diagnostic</strong>
+      <p>Ergothérapeute, 2 jours d'intervention sur place + rédaction d'un rapport.</p>
+    </div>
+    <div class="step">
+      <span class="n">01</span>
+      <strong>Visite + 1 mois</strong>
+      <p>Rendu d'un rapport précisant les préconisations techniques de l'ergothérapeute.</p>
+    </div>
+    <div class="step">
+      <span class="n">02</span>
+      <strong>Sensibilisation</strong>
+      <p>Équipes et accompagnement des managers, 1 à 2 jours selon le besoin.</p>
+    </div>
+    <div class="step">
+      <span class="n">02</span>
+      <strong>Atelier collaboratif</strong>
+      <p>Temps collectif type team building, 1 à 2 jours.</p>
+    </div>
+    <div class="step">
+      <span class="n">03</span>
+      <strong>Suivi &amp; impact</strong>
+      <p>Questionnaires, entretiens, restitution des données et axes d'amélioration.</p>
+    </div>
+  </div>
+
+  <div class="band no-break">
+    <h3 style="margin-bottom:0.3em">Financements possibles, sous conditions</h3>
+    <p>Ce parcours peut être financé selon votre situation : <strong>Agefiph</strong> (secteur privé), <strong>OPCO</strong> (partie formation et sensibilisation des équipes au handicap), <strong>Cap Emploi</strong> (accompagnement gratuit pour certaines prestations : montage de dossier, ingénierie financière), <strong>FIPHFP</strong> (secteur public) et <strong>fonds régionaux / appels à projet</strong>.</p>
+  </div>
+
+  <div class="card no-break">
+    <h3>À savoir : la sensibilisation peut réduire votre contribution</h3>
+    <p style="margin-bottom:0">Les dépenses relatives aux prestations d'accompagnement des travailleurs handicapés — notamment les actions de sensibilisation et de formation des salariés réalisées pour favoriser la prise de poste et le maintien en emploi — sont déductibles de la contribution annuelle OETH, dans la limite de 10 % de la contribution brute avant déductions.</p>
+    <p class="src" style="margin:0">Source : Urssaf, « La contribution annuelle à l'obligation d'emploi des travailleurs handicapés ».</p>
+  </div>
+</section>
+
+<!-- 7. INTERVENANTES -->
+<section class="page">
+  <p class="kicker">Qui vous accompagne</p>
+  <h2 class="section">Deux expertises croisées : l'humain et le poste de travail</h2>
+  <div class="rule"></div>
+
+  <div class="profile no-break">
+    <img src="__PORTRAIT__" alt="Amandine Barlatier">
+    <div>
+      <h3>Amandine Barlatier</h3>
+      <p class="role">Coach professionnelle · Cheffe d'entreprise</p>
+      <p class="sub">20 ans d'entreprise. Une conviction : chacun d'entre nous a sa place.</p>
+      <p>Plus de vingt ans en entreprise, puis cofondatrice en 2019 d'une société de promotion immobilière que je dirige encore aujourd'hui. Formée au coaching professionnel à l'Institut Maïeutis. Particulièrement sensible aux moments où la différence devient un frein à la communication, à la collaboration, à l'intégration.</p>
+      <p style="margin-bottom:0">Fédérer des équipes, accompagner le changement, aider chacun à trouver sa place.</p>
+    </div>
+  </div>
+
+  <div class="profile no-break">
+    <div class="monogram">AR</div>
+    <div>
+      <h3>Anaïs Rognard</h3>
+      <p class="role">Ergothérapeute · Cheffe d'entreprise</p>
+      <p class="sub">Artisane du lien entre le terrain, le jeu et l'accessibilité.</p>
+      <p>Diplômée de la faculté de médecine Claude Bernard Lyon 1. Plus de dix ans auprès d'enfants, d'adolescents, d'adultes et des professionnels qui les entourent. Une expertise particulière sur les troubles du neurodéveloppement (DYS, TDAH, autisme) et les interactions entre capacités et environnements.</p>
+      <p style="margin-bottom:0">Formatrice à FM2J sur le jeu, le handicap et l'autisme. Collaboration avec OPPI TOYS pour des jouets accessibles à tous. Interventions auprès d'EKLYA School of Business pour l'accès à la formation et à l'emploi des personnes en situation de handicap.</p>
+    </div>
+  </div>
+
+  <div class="card tinted no-break">
+    <h3 style="margin-bottom:0.4em">Notre force</h3>
+    <p style="margin-bottom:0.6em">Accompagner les entreprises dans la construction de conditions de travail inclusives, durables et performantes : expertise croisée ergothérapie, coaching et formation, expérience de l'accompagnement des équipes comme des personnes en situation de handicap.</p>
+    <p class="quote" style="margin:0">« La performance durable d'une organisation se construit en reconnaissant — et en valorisant — ce qui rend chaque personne singulière. »</p>
+  </div>
+
+  <div class="band no-break" style="margin-bottom:0">
+    <p class="quote" style="color:#fff">« Ce ne sont pas uniquement les personnes qui doivent s'adapter à leur environnement — ce sont aussi les environnements qui doivent être pensés pour accueillir la diversité des besoins. »</p>
+  </div>
+</section>
+
+<!-- 8. SOURCES + CONTACT -->
+<section class="page">
+  <p class="kicker">Conclusion</p>
+  <h2 class="section">Ensemble, construisons des entreprises inclusives, humaines et performantes</h2>
+  <div class="rule"></div>
+  <p class="lead">Chaque talent compte, chaque parcours a de la valeur. L'inclusion est un levier d'engagement et de performance — porté par une vraie culture de l'écoute, du respect et de la coopération.</p>
+
+  <div class="card" style="margin-top:5mm">
+    <h3>Parlons de votre situation</h3>
+    <p style="margin-bottom:0">Un échange de 30 minutes suffit pour clarifier votre besoin et vérifier s'il existe une voie de financement adaptée. Nous vous dirons franchement si ce parcours correspond — ou non — à ce que vous vivez.</p>
+  </div>
+
+  <h3 style="margin-top:7mm">Sources des données citées</h3>
+  <ol class="sources">
+    <li>Agefiph, « Connaissez-vous les fondamentaux du handicap ? » — 1 Français sur 5, soit 12 millions de personnes, est concerné par le handicap ; plus de 80 % des handicaps sont invisibles et surviennent au cours de la vie. <em>agefiph.fr</em></li>
+    <li>Mon Parcours Handicap (portail d'information du Gouvernement), « Handicap invisible : des difficultés bien réelles derrière l'absence de signes visibles » — 80 % des handicaps déclarés sont invisibles.</li>
+    <li>Urssaf, « La contribution annuelle à l'obligation d'emploi des travailleurs handicapés (OETH) » — obligation de 6 % pour les entreprises de 20 salariés et plus (loi du 10 juillet 1987) ; calcul de la contribution annuelle reversée à l'Agefiph ; dépenses déductibles, plafonnées à 10 % de la contribution brute.</li>
+    <li>DARES, « L'obligation d'emploi des travailleurs handicapés en 2024 », 13 novembre 2025 — 720 800 travailleurs en situation de handicap employés dans 111 300 entreprises assujetties ; 4,0 % des effectifs assujettis, 5,1 % au sens légal de l'obligation, en progression de 0,2 point.</li>
+    <li>DREES, données sur la situation des personnes handicapées par rapport à l'emploi (via Vie-publique.fr) — 29 % des personnes concernées en emploi contre 66 % de l'ensemble de la population ; 24 % au chômage contre 12 %.</li>
+    <li>Presse économique et associative pour les cas Schneider Electric et Andros (Le Parisien, Agefiph).</li>
+  </ol>
+
+  <div class="footer">
+    <span>Parcours d'inclusion et de maintien dans l'emploi — Amandine Barlatier &amp; Anaïs Rognard</span>
+    <span>1/1 — Document non contractuel</span>
+  </div>
+</section>
+
+</body>
+</html>

@@ -3,6 +3,7 @@ titre: Coaching d'équipe
 resume: Faire émerger les non-dits, remettre du sens et de la clarté dans la façon dont le collectif travaille ensemble.
 pourQui: Équipes, collectifs projet, comités de direction
 ordre: 2
+dossier: /dossier-parcours-inclusion.pdf
 ---
 
 ## Ce que vous vivez aujourd'hui

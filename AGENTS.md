@@ -75,6 +75,17 @@ evidence/
 - Palette et typographie se pilotent depuis `src/styles/global.css` (bloc `@theme`).
 - **TODO avant mise en ligne** : nom de domaine, portrait professionnel, email pro, SIRET, hébergeur, lien de réservation, endpoint du formulaire. Détail dans `contenu/A-COMPLETER.md`.
 
+### Régénérer le dossier PDF (Parcours inclusion)
+
+Le dossier de présentation téléchargeable (`public/dossier-parcours-inclusion.pdf`) est construit à partir de `contenu/dossier/dossier-parcours-inclusion.src.html` :
+
+1. Éditer le HTML source (police, couleurs et structure en `@page` A4 en haut du fichier).
+2. Y réinliner les images à la place des jetons `__ATELIER__` / `__PORTRAIT__` (data URI base64).
+3. Le rendre en PDF via Chrome headless (`Page.printToPDF`) puis le déposer dans `public/`.
+4. `npm run build` et vérifier que la page `/accompagnements/coaching-equipe/` propose bien le lien.
+
+La page affiche le bouton de téléchargement **uniquement** si le frontmatter de la fiche contient `dossier: /nom-du-fichier.pdf` (champ optionnel du schéma, `src/content.config.ts`).
+
 ### Déploiement (02/10/2026)
 
 - **Dépôt** : `AlexisBarlatier/evidence` (GitHub, **public**) — https://github.com/AlexisBarlatier/evidence

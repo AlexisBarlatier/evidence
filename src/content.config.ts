@@ -14,6 +14,8 @@ const accompagnements = defineCollection({
     pourQui: z.string(),
     ordre: z.number().default(99),
     brouillon: z.boolean().default(false),
+    /** Chemin d'un PDF dans `public/` à mettre en téléchargement sur la page, ex. "/dossier-parcours-inclusion.pdf". */
+    dossier: z.string().optional(),
   }),
 });
 
