@@ -3,7 +3,7 @@
 ## Hero
 
 **H1 (variante retenue à valider)**
-> Ce qui fait réussir un projet, c'est la qualité de ce qui se joue entre les personnes.
+> Évoluer en leader, grandir en équipe, avancer ensemble vers l'autonomie.
 
 **Sous-titre**
 Coaching professionnel pour managers, dirigeants et équipes.

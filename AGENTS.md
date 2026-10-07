@@ -70,7 +70,7 @@ evidence/
 ### Règles de travail
 
 - **Nom affiché partout : « Amandine Barlatier ».** Seules les **mentions légales** utilisent le nom d'état civil **Amandine Fouque**.
-- Phrase d'accroche retenue : « Ce qui fait réussir un projet, c'est la qualité de ce qui se joue entre les personnes. »
+- Phrase d'accroche retenue (07/10/2026) : « Évoluer en leader, grandir en équipe, avancer ensemble vers l'autonomie. » — remplace « Ce qui fait réussir un projet, c'est la qualité de ce qui se joue entre les personnes. »
 - Pour ajouter un accompagnement : déposer un `.md` dans `contenu/accompagnements/` avec le frontmatter (`titre`, `resume`, `pourQui`, `ordre`) — la page est générée automatiquement.
 - Palette et typographie se pilotent depuis `src/styles/global.css` (bloc `@theme`).
 - **TODO avant mise en ligne** : nom de domaine, portrait professionnel, email pro, SIRET, hébergeur, lien de réservation, endpoint du formulaire. Détail dans `contenu/A-COMPLETER.md`.
