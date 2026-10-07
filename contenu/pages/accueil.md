@@ -12,7 +12,7 @@ Un espace exigeant et bienveillant pour transformer les tensions en coopération
 **CTA principal** : Réserver un appel découverte (30 min, gratuit)
 **CTA secondaire** : Découvrir les accompagnements
 
-**Visuel** : portrait d'Amandine (à fournir — voir `contenu/A-COMPLETER.md`)
+**Visuel** : `public/images/amandine-barlatier-portrait.jpg` — Amandine debout dans son bureau, devant la fenêtre. Portrait reçu le 07/10/2026, en ligne sur l'accueil.
 
 ---
 
