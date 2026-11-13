@@ -1,0 +1,100 @@
+---
+/**
+ * Galerie de pages d'un support (deck, dossier, présentation).
+ * Les images sont dans `public/` ; le frontmatter de la fiche fournit
+ * un titre et une légende par page. Ouverture plein écran en <dialog>,
+ * avec repli sur le fichier image si le JS est désactivé.
+ */
+interface Slide {
+  src: string;
+  legende: string;
+}
+
+interface Props {
+  titre: string;
+  intro?: string;
+  slides: Slide[];
+}
+
+const { titre, intro, slides } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const dialogId = 'galerie-' + titre.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+---
+
+<section class="mt-16" aria-labelledby={`${dialogId}-titre`}>
+  <h2 id={`${dialogId}-titre`} class="font-serif text-2xl">{titre}</h2>
+  {intro && <p class="mt-3 max-w-2xl text-ink-soft">{intro}</p>}
+
+  <ol class="mt-6 grid list-none grid-cols-1 gap-4 p-0 sm:grid-cols-2 lg:grid-cols-3">
+    {
+      slides.map((slide, i) => (
+        <li>
+          <a
+            href={`${base}${slide.src}`}
+            data-galerie={dialogId}
+            data-src={`${base}${slide.src}`}
+            data-legende={`${String(i + 1).padStart(2, '0')} — ${slide.legende}`}
+            class="group block overflow-hidden rounded-lg border border-sand-200 bg-white transition-colors hover:border-petrol-500"
+          >
+            <img
+              src={`${base}${slide.src}`}
+              alt={`Page ${i + 1} : ${slide.legende}`}
+              width="1269"
+              height="714"
+              loading="lazy"
+              decoding="async"
+              class="block h-auto w-full"
+            />
+            <span class="flex items-baseline gap-3 px-4 py-3 text-sm text-ink-soft">
+              <span class="font-serif text-petrol-600">{String(i + 1).padStart(2, '0')}</span>
+              <span class="group-hover:text-petrol-600">{slide.legende}</span>
+            </span>
+          </a>
+        </li>
+      ))
+    }
+  </ol>
+</section>
+
+<dialog
+  id={dialogId}
+  data-galerie={dialogId}
+  class="m-auto w-[min(96vw,1400px)] max-w-none rounded-lg bg-transparent p-0 backdrop:bg-ink/80"
+>
+  <figure class="m-0">
+    <img src="" alt="" class="block h-auto w-full rounded-t-lg bg-white" />
+    <figcaption class="flex items-center justify-between gap-4 rounded-b-lg bg-white px-4 py-3 text-sm text-ink-soft">
+      <span data-legende></span>
+      <form method="dialog">
+        <button class="rounded-full border border-sand-300 px-4 py-1 text-sm hover:border-petrol-500 hover:text-petrol-600">
+          Fermer
+        </button>
+      </form>
+    </figcaption>
+  </figure>
+</dialog>
+
+<script>
+  document.querySelectorAll<HTMLDialogElement>('dialog[data-galerie]').forEach((dialog) => {
+    const cle = dialog.dataset.galerie!;
+    const img = dialog.querySelector('img')!;
+    const legende = dialog.querySelector('[data-legende]')!;
+    const liens = document.querySelectorAll<HTMLAnchorElement>(`a[data-galerie="${cle}"]`);
+
+    liens.forEach((lien) => {
+      lien.addEventListener('click', (event) => {
+        if (typeof dialog.showModal !== 'function') return;
+        event.preventDefault();
+        img.src = lien.dataset.src ?? '';
+        img.alt = lien.dataset.legende ?? '';
+        legende.textContent = lien.dataset.legende ?? '';
+        dialog.showModal();
+      });
+    });
+
+    // Clic sur le fond = fermeture
+    dialog.addEventListener('click', (event) => {
+      if (event.target === dialog) dialog.close();
+    });
+  });
+</script>

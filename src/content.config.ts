@@ -16,6 +16,14 @@ const accompagnements = defineCollection({
     brouillon: z.boolean().default(false),
     /** Chemin d'un PDF dans `public/` à mettre en téléchargement sur la page, ex. "/dossier-parcours-inclusion.pdf". */
     dossier: z.string().optional(),
+    /** Galerie de pages d'un support, affichée sous le contenu (ex. deck UNIK du parcours d'inclusion). */
+    galerie: z
+      .object({
+        titre: z.string(),
+        intro: z.string().optional(),
+        slides: z.array(z.object({ src: z.string(), legende: z.string() })),
+      })
+      .optional(),
   }),
 });
 

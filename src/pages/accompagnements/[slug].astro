@@ -1,6 +1,7 @@
 ---
 import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import SlideGallery from '../../components/SlideGallery.astro';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
 export async function getStaticPaths() {
@@ -30,6 +31,8 @@ const { Content } = await render(entry);
     <div class="prose-page mt-12">
       <Content />
     </div>
+
+    {entry.data.galerie && <SlideGallery {...entry.data.galerie} />}
 
     {entry.data.dossier && (
       <div class="mt-10 rounded-lg border border-sand-200 bg-sand-50 p-6">
