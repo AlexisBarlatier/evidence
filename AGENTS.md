@@ -79,6 +79,8 @@ evidence/
 
 Le dossier de présentation téléchargeable (`public/dossier-parcours-inclusion.pdf`) est construit à partir de `contenu/dossier/dossier-parcours-inclusion.src.html` :
 
+> Version publiée depuis le 13/11/2026 : `public/dossier-parcours-inclusion-unik.pdf`, 9 pages 16/9, construite depuis `contenu/dossier/unik-parcours-9-pages.src.html` (charte UNIK : prune #7C0B4D, orange #FF9008, crème #FDF3EE). Voir `contenu/dossier/VERSIONS.md`.
+
 1. Éditer le HTML source (police, couleurs et structure en `@page` A4 en haut du fichier).
 2. Y réinliner les images à la place des jetons `__ATELIER__` / `__PORTRAIT__` (data URI base64).
 3. Le rendre en PDF via Chrome headless (`Page.printToPDF`) puis le déposer dans `public/`.

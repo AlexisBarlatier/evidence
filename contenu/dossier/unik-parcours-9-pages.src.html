@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>UNIK — Parcours d'inclusion et de maintien dans l'emploi</title>
+<style>
+  :root{
+    --plum:#7C0B4D;
+    --plum-2:#A3346F;
+    --plum-tint:#F7E3EC;
+    --orange:#FF9008;
+    --orange-tint:#FFEBD5;
+    --cream:#FDF3EE;
+    --ink:#2E1B24;
+    --ink-soft:#6B4A57;
+    --line:rgba(124,11,77,.14);
+  }
+  @page{ size:297mm 167mm; margin:0; }
+  *{ box-sizing:border-box; }
+  html,body{ margin:0; padding:0; }
+  body{
+    font-family:"Lato","Liberation Sans",sans-serif;
+    color:var(--ink);
+    background:#fff;
+    -webkit-print-color-adjust:exact;
+    print-color-adjust:exact;
+  }
+  .page{
+    position:relative; width:297mm; height:167mm; overflow:hidden;
+    background:var(--cream); page-break-after:always;
+  }
+  .page:last-child{ page-break-after:auto; }
+  .content{ position:absolute; inset:0 0 11mm 0; padding:13mm 17mm 0; }
+  .foot{
+    position:absolute; left:0; right:0; bottom:0; height:11mm;
+    background:var(--plum); color:#fff;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:0 17mm; font-size:7.4pt; letter-spacing:.04em;
+  }
+  .foot .slogan{ opacity:.92; }
+  .foot .num{ font-weight:900; letter-spacing:.1em; }
+
+  /* Marque */
+  .brand{ display:flex; align-items:center; gap:2.6mm; }
+  .brand svg{ display:block; }
+  .brand .word{ font-weight:900; font-size:15pt; letter-spacing:.34em; color:var(--plum); line-height:1; }
+  .head{ display:flex; align-items:center; justify-content:space-between; }
+  .head .section{ font-size:7.6pt; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:var(--plum-2); }
+
+  h1{ font-weight:900; font-size:27pt; line-height:1.08; letter-spacing:-.01em; color:var(--plum); margin:0; }
+  .kicker{ font-size:8pt; font-weight:900; letter-spacing:.22em; text-transform:uppercase; color:var(--orange); margin:0 0 2mm; }
+  .lead{ font-size:10.5pt; line-height:1.5; color:var(--ink-soft); margin:0; }
+  p{ margin:0; }
+
+  .card{ background:#fff; border:1px solid var(--line); border-radius:3mm; padding:5.5mm 6mm; }
+  .muted{ color:var(--ink-soft); }
+  .src{ font-size:6.8pt; color:#9A7C88; letter-spacing:.01em; }
+
+  /* Couverture */
+  .cover{ display:grid; grid-template-columns:1fr 88mm; gap:9mm; align-items:center; height:100%; }
+  .cover h1{ font-size:37pt; line-height:1.03; margin-bottom:5mm; }
+  .cover .under{ font-size:11pt; font-weight:700; color:var(--orange); letter-spacing:.02em; margin-bottom:5mm; }
+  .cover .sub{ font-size:11pt; line-height:1.55; color:var(--ink-soft); max-width:118mm; }
+  .authors{ display:flex; gap:9mm; margin-top:9mm; padding-top:4mm; border-top:1px solid var(--line); }
+  .authors strong{ display:block; font-size:9.6pt; font-weight:900; color:var(--plum); }
+  .authors span{ font-size:8.4pt; color:var(--ink-soft); }
+
+  /* Chiffres */
+  .figs{ display:grid; grid-template-columns:1fr 1fr; gap:5mm; margin-top:6mm; }
+  .figs .col{ border-radius:4mm; padding:6mm 6.5mm; }
+  .figs .sal{ background:var(--plum-tint); }
+  .figs .ent{ background:var(--orange-tint); }
+  .col h2{ font-size:9pt; font-weight:900; letter-spacing:.16em; text-transform:uppercase; margin:0 0 4mm; }
+  .sal h2{ color:var(--plum); }
+  .ent h2{ color:#B45800; }
+  .fig{ display:grid; grid-template-columns:23mm 1fr; gap:4mm; align-items:baseline; padding:2.6mm 0; border-top:1px solid rgba(124,11,77,.12); }
+  .fig:first-of-type{ border-top:none; padding-top:0; }
+  .fig .n{ font-weight:900; font-size:17pt; line-height:1; color:var(--plum); letter-spacing:-.02em; }
+  .ent .fig .n{ color:#B45800; font-size:13.5pt; }
+  .fig .t{ font-size:8.7pt; line-height:1.4; color:var(--ink); }
+
+  .punch{ margin-top:5mm; background:var(--plum); color:#fff; border-radius:3mm; padding:4.6mm 6mm; font-size:9pt; line-height:1.45; }
+  .punch strong{ color:#FFC48A; }
+
+  /* Freins */
+  .fraints{ display:grid; grid-template-columns:1fr 1fr; gap:4mm; margin-top:5mm; }
+  .frein{ display:grid; grid-template-columns:10mm 1fr; gap:4mm; background:#fff; border:1px solid var(--line); border-radius:3mm; padding:4.6mm 5mm; }
+  .frein .ico{ width:10mm; height:10mm; border-radius:2.4mm; background:var(--plum-tint); display:flex; align-items:center; justify-content:center; }
+  .frein h3{ margin:0 0 1mm; font-size:9.6pt; font-weight:900; color:var(--plum); }
+  .frein p{ font-size:8.2pt; line-height:1.4; color:var(--ink-soft); }
+  .lever{ margin-top:4.5mm; display:flex; align-items:center; gap:3mm; font-size:9.4pt; color:var(--plum); font-weight:700; }
+  .lever .bar{ width:14mm; height:1.2mm; background:var(--orange); border-radius:2mm; }
+
+  /* Cas */
+  .case{ display:grid; grid-template-columns:1.32fr .68fr; gap:6mm; margin-top:5mm; height:112mm; }
+  .case .story{ padding-right:2mm; }
+  .case h1{ font-size:22pt; line-height:1.1; margin-bottom:4mm; }
+  .case .body{ font-size:9pt; line-height:1.55; color:var(--ink-soft); }
+  .quote{ margin-top:4mm; padding-left:4.5mm; border-left:1.4mm solid var(--orange); font-size:10pt; line-height:1.4; color:var(--plum); font-weight:700; font-style:italic; }
+  .quote span{ display:block; margin-top:1.5mm; font-size:7.6pt; font-style:normal; font-weight:400; color:var(--ink-soft); letter-spacing:.03em; }
+  .results{ background:var(--plum); border-radius:4mm; padding:6mm; color:#fff; }
+  .results h2{ font-size:8pt; font-weight:900; letter-spacing:.18em; text-transform:uppercase; color:#FFC48A; margin:0 0 4mm; }
+  .results ul{ list-style:none; margin:0; padding:0; }
+  .results li{ position:relative; padding-left:5mm; margin-bottom:3.4mm; font-size:9pt; line-height:1.4; }
+  .results li::before{ content:""; position:absolute; left:0; top:2.1mm; width:2.2mm; height:2.2mm; border-radius:50%; background:var(--orange); }
+  .results .kv{ margin-top:5mm; padding-top:4mm; border-top:1px solid rgba(255,255,255,.24); }
+  .results .kv b{ display:block; font-size:20pt; font-weight:900; line-height:1; color:#fff; }
+  .results .kv span{ font-size:7.6pt; color:rgba(255,255,255,.82); }
+
+  /* Pourquoi pas vous */
+  .benefits{ display:flex; flex-wrap:wrap; gap:3mm; margin-top:6mm; max-width:168mm; }
+  .chip{ background:#fff; border:1px solid var(--line); border-radius:20mm; padding:2.4mm 5mm; font-size:8.8pt; color:var(--plum); font-weight:700; }
+  .offer{ background:var(--plum); color:#fff; border-radius:4mm; padding:6mm 7mm; margin-top:7mm; display:grid; grid-template-columns:1fr auto; gap:6mm; align-items:center; }
+  .offer h3{ margin:0 0 2mm; font-size:12pt; font-weight:900; }
+  .offer p{ font-size:8.8pt; line-height:1.5; color:rgba(255,255,255,.9); }
+  .offer .big{ font-size:30pt; font-weight:900; color:var(--orange); line-height:1; }
+
+  /* Publics */
+  .publics{ display:grid; grid-template-columns:1fr 1fr; gap:4.5mm; margin-top:6mm; }
+  .public{ background:#fff; border:1px solid var(--line); border-radius:3.5mm; padding:5.5mm; display:grid; grid-template-columns:11mm 1fr; gap:4mm; }
+  .public .ico{ width:11mm; height:11mm; border-radius:50%; background:var(--orange-tint); display:flex; align-items:center; justify-content:center; }
+  .public h3{ margin:0 0 1.2mm; font-size:10pt; font-weight:900; color:var(--plum); }
+  .public p{ font-size:8.4pt; line-height:1.4; color:var(--ink-soft); }
+
+  /* Objectifs */
+  .goals{ margin-top:6mm; display:grid; grid-template-columns:1fr 1fr; gap:4mm 7mm; }
+  .goal{ display:grid; grid-template-columns:11mm 1fr; gap:4mm; align-items:start; padding-bottom:3.4mm; border-bottom:1px solid var(--line); }
+  .goal .n{ font-weight:900; font-size:19pt; line-height:1; color:var(--orange); }
+  .goal p{ font-size:9.4pt; line-height:1.45; color:var(--ink); }
+  .goal:last-child{ grid-column:1 / -1; border-bottom:none; }
+
+  /* Etapes */
+  .steps{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:5mm; margin-top:7mm; }
+  .step{ background:#fff; border:1px solid var(--line); border-radius:3.5mm; padding:6mm; position:relative; }
+  .step .num{ font-weight:900; font-size:24pt; color:var(--plum-tint); line-height:1; }
+  .step h3{ margin:2mm 0 2.5mm; font-size:11pt; font-weight:900; color:var(--plum); line-height:1.2; }
+  .step p{ font-size:8.6pt; line-height:1.5; color:var(--ink-soft); }
+  .step .tag{ position:absolute; top:6mm; right:6mm; font-size:7pt; font-weight:900; letter-spacing:.14em; color:var(--orange); }
+  .closing{ margin-top:8mm; display:flex; align-items:baseline; justify-content:space-between; gap:8mm; }
+  .closing .line{ font-size:16pt; font-weight:900; color:var(--plum); }
+  .closing .who{ font-size:8.2pt; color:var(--ink-soft); text-align:right; line-height:1.5; }
+</style>
+</head>
+<body>
+
+<!-- 1 · COUVERTURE -->
+<section class="page">
+  <div class="content">
+    <div class="brand" style="margin-bottom:16mm">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" fill="#FF9008"/><g stroke="#7C0B4D" stroke-width="1.6" stroke-linecap="round"><path d="M12 1.6v3"/><path d="M12 19.4v3"/><path d="M1.6 12h3"/><path d="M19.4 12h3"/><path d="M4.6 4.6l2.1 2.1"/><path d="M17.3 17.3l2.1 2.1"/><path d="M19.4 4.6l-2.1 2.1"/><path d="M6.7 17.3l-2.1 2.1"/></g></svg>
+      <span class="word">UNIK</span>
+    </div>
+
+    <div class="cover">
+      <div>
+        <p class="kicker">Parcours d'accompagnement</p>
+        <h1>Parcours d'inclusion et de maintien dans l'emploi</h1>
+        <p class="under">des personnes en situation de handicap</p>
+        <p class="sub">Accompagner les entreprises et les équipes dans un projet d'organisation inclusive et performante.</p>
+        <div class="authors">
+          <div><strong>Amandine Barlatier</strong><span>Coach professionnelle</span></div>
+          <div><strong>Anaïs Rognard</strong><span>Ergothérapeute</span></div>
+        </div>
+      </div>
+      <div>
+        <svg viewBox="0 0 200 200" width="100%" height="100%" fill="none">
+          <circle cx="100" cy="100" r="92" fill="#F7E3EC"/>
+          <circle cx="100" cy="100" r="68" stroke="#7C0B4D" stroke-width="1.2" opacity=".35"/>
+          <circle cx="100" cy="100" r="46" fill="#7C0B4D"/>
+          <circle cx="100" cy="100" r="24" fill="#FF9008"/>
+          <g stroke="#FF9008" stroke-width="4" stroke-linecap="round">
+            <path d="M100 4v14"/><path d="M100 182v14"/><path d="M4 100h14"/><path d="M182 100h14"/>
+            <path d="M32 32l10 10"/><path d="M158 158l10 10"/><path d="M168 32l-10 10"/><path d="M42 158l-10 10"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span class="slogan">UNIK · Chaque singularité renforce le collectif</span><span class="num">01</span></div>
+</section>
+
+<!-- 2 · CONTEXTE -->
+<section class="page">
+  <div class="content">
+    <div class="head">
+      <div class="brand"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" fill="#FF9008"/><g stroke="#7C0B4D" stroke-width="1.8" stroke-linecap="round"><path d="M12 1.6v3"/><path d="M12 19.4v3"/><path d="M1.6 12h3"/><path d="M19.4 12h3"/><path d="M4.6 4.6l2.1 2.1"/><path d="M17.3 17.3l2.1 2.1"/><path d="M19.4 4.6l-2.1 2.1"/><path d="M6.7 17.3l-2.1 2.1"/></g></svg><span class="word" style="font-size:11pt">UNIK</span></div>
+      <span class="section">Le contexte</span>
+    </div>
+    <h1 style="margin-top:7mm">Quel est le contexte&nbsp;?</h1>
+
+    <div class="figs">
+      <div class="col sal">
+        <h2>Côté salariés</h2>
+        <div class="fig"><span class="n">12 M</span><span class="t">de personnes en situation de handicap en France, soit environ 1 personne sur 5.</span></div>
+        <div class="fig"><span class="n">5,1 %</span><span class="t">taux d'emploi au sens légal de l'obligation en 2024 (4,0 % des effectifs assujettis), encore loin des 6 %.</span></div>
+        <div class="fig"><span class="n">80 %</span><span class="t">des handicaps sont invisibles — et surviennent souvent au cours de la vie.</span></div>
+        <div class="fig"><span class="n">1 / 2</span><span class="t">salarié sur deux est en risque de désinsertion professionnelle au cours de sa carrière.</span></div>
+      </div>
+      <div class="col ent">
+        <h2>Côté entreprises</h2>
+        <div class="fig"><span class="n">6 %</span><span class="t">d'embauche minimum de travailleurs handicapés pour les entreprises de plus de 20 salariés (OETH).</span></div>
+        <div class="fig"><span class="n">Agefiph</span><span class="t">une contribution financière annuelle est versée si l'obligation n'est pas atteinte.</span></div>
+        <div class="fig"><span class="n">ESG</span><span class="t">un impact négatif sur les indicateurs extra-financiers et la note de responsabilité (RSE).</span></div>
+        <div class="fig"><span class="n">Équipe</span><span class="t">c'est sur le terrain, dans l'équipe qui accueille, que la réussite se joue vraiment.</span></div>
+      </div>
+    </div>
+
+    <div class="punch"><strong>Ce que l'obligation ne dit pas :</strong> recruter une personne en situation de handicap est la partie visible. Sa réussite se joue dans l'équipe qui l'accueille.</div>
+    <p class="src" style="margin-top:2.5mm">Sources : Agefiph ; Urssaf (OETH, loi du 10 juillet 1987) ; DARES, « L'obligation d'emploi des travailleurs handicapés en 2024 » ; DREES, données 2023.</p>
+  </div>
+  <div class="foot"><span class="slogan">UNIK · Chaque singularité renforce le collectif</span><span class="num">02</span></div>
+</section>
+
+<!-- 3 · FREINS -->
+<section class="page">
+  <div class="content">
+    <div class="head">
+      <div class="brand"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" fill="#FF9008"/><g stroke="#7C0B4D" stroke-width="1.8" stroke-linecap="round"><path d="M12 1.6v3"/><path d="M12 19.4v3"/><path d="M1.6 12h3"/><path d="M19.4 12h3"/><path d="M4.6 4.6l2.1 2.1"/><path d="M17.3 17.3l2.1 2.1"/><path d="M19.4 4.6l-2.1 2.1"/><path d="M6.7 17.3l-2.1 2.1"/></g></svg><span class="word" style="font-size:11pt">UNIK</span></div>
+      <span class="section">Les freins</span>
+    </div>
+    <h1 style="margin-top:7mm">Quelques raisons qui l'expliquent…</h1>
+
+    <div class="fraints">
+      <div class="frein">
+        <div class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7C0B4D" stroke-width="1.7" stroke-linecap="round"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12Z"/><circle cx="12" cy="12" r="2.6"/><path d="M3 3l18 18"/></svg></div>
+        <div><h3>Représentations sociales</h3><p>Le handicap évoqué reste souvent réduit à sa forme visible. Les peurs et les méconnaissances prennent le pas sur la réalité des situations.</p></div>
+      </div>
+      <div class="frein">
+        <div class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7C0B4D" stroke-width="1.7" stroke-linecap="round"><path d="M12 3v18"/><path d="M17 7.5c0-2-2.2-3-5-3s-5 1-5 3 2 2.8 5 3.5 5 1.4 5 3.5-2.2 3-5 3-5-1-5-3"/></svg></div>
+        <div><h3>Crainte de la complexité et des coûts</h3><p>On imagine des aménagements lourds, alors que l'adaptation raisonnable est souvent modeste — et parfois organisationnelle avant d'être matérielle.</p></div>
+      </div>
+      <div class="frein">
+        <div class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7C0B4D" stroke-width="1.7" stroke-linecap="round"><path d="M3 6.5A2 2 0 0 1 5 5h5.5l2 2H19a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"/><path d="M8 13.5h8"/></svg></div>
+        <div><h3>Manque de formation des managers</h3><p>Beaucoup d'encadrants n'ont jamais été outillés. La bonne intention ne remplace pas une méthode.</p></div>
+      </div>
+      <div class="frein">
+        <div class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7C0B4D" stroke-width="1.7" stroke-linecap="round"><circle cx="9" cy="8" r="3.2"/><path d="M2.5 20c0-3.6 2.9-5.6 6.5-5.6s6.5 2 6.5 5.6"/><path d="M17 8.5h5"/><path d="M17 12h5"/></svg></div>
+        <div><h3>Peur de désorganiser l'équipe</h3><p>Horaires, rythme, charge : la crainte porte sur l'impact pour l'équipe, avant toute évaluation réelle de ce qui doit changer.</p></div>
+      </div>
+      <div class="frein" style="grid-column:1 / -1">
+        <div class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7C0B4D" stroke-width="1.7" stroke-linecap="round"><path d="M4 20V9l8-5 8 5v11"/><path d="M9 20v-6h6v6"/><path d="M3 20h18"/></svg></div>
+        <div><h3>Inadéquation perçue entre le poste et le handicap</h3><p>Un poste jugé incompatible en théorie devient souvent tenable dès que l'organisation est repensée avec la personne.</p></div>
+      </div>
+    </div>
+
+    <div class="lever"><span class="bar"></span>L'inclusion n'est pas une contrainte : c'est un levier de performance.</div>
+  </div>
+  <div class="foot"><span class="slogan">UNIK · Chaque singularité renforce le collectif</span><span class="num">03</span></div>
+</section>
+
+<!-- 4 · SCHNEIDER -->
+<section class="page">
+  <div class="content">
+    <div class="head">
+      <div class="brand"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" fill="#FF9008"/><g stroke="#7C0B4D" stroke-width="1.8" stroke-linecap="round"><path d="M12 1.6v3"/><path d="M12 19.4v3"/><path d="M1.6 12h3"/><path d="M19.4 12h3"/><path d="M4.6 4.6l2.1 2.1"/><path d="M17.3 17.3l2.1 2.1"/><path d="M19.4 4.6l-2.1 2.1"/><path d="M6.7 17.3l-2.1 2.1"/></g></svg><span class="word" style="font-size:11pt">UNIK</span></div>
+      <span class="section">Quand ça marche · 1/2</span>
+    </div>
+
+    <div class="case">
+      <div class="story">
+        <p class="kicker" style="margin-top:8mm">Schneider Electric</p>
+        <h1>Un alternant malvoyant devient responsable des relations sociales</h1>
+        <p class="body" style="margin-top:4mm">À 29 ans, Augustin Deney, malvoyant, a rejoint Schneider Electric grâce à l'engagement de l'entreprise en matière de diversité et d'inclusion. Il bénéficie de matériel de bureau adapté : logiciel spécifique, téléagrandisseur.<br><br>Ce qui a fait la différence n'est pas seulement l'équipement, mais la façon dont l'équipe a été préparée à l'accueillir — et le regard porté sur ses capacités plutôt que sur sa déficience.</p>
+        <div class="quote">« Le plus compliqué, c'est l'environnement de travail. »<span>Augustin Deney</span></div>
+        <div class="quote" style="margin-top:3.5mm; font-size:9pt">« La sensibilisation reste un ingrédient de base : sans elle, aucune politique de diversité ne fonctionnerait. »<span>Julie Legoubin</span></div>
+      </div>
+      <div class="results">
+        <h2>Résultats</h2>
+        <ul>
+          <li>Fidélisation des talents</li>
+          <li>Marque employeur renforcée</li>
+          <li>Culture managériale inclusive</li>
+        </ul>
+        <div class="kv"><b>29</b><span>ans : l'âge d'Augustin Deney à son arrivée chez Schneider Electric</span></div>
+      </div>
+    </div>
+    <p class="src" style="margin-top:4mm">Source : Le Parisien, Agefiph.</p>
+  </div>
+  <div class="foot"><span class="slogan">UNIK · Chaque singularité renforce le collectif</span><span class="num">04</span></div>
+</section>
+
+<!-- 5 · ANDROS -->
+<section class="page">
+  <div class="content">
+    <div class="head">
+      <div class="brand"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" fill="#FF9008"/><g stroke="#7C0B4D" stroke-width="1.8" stroke-linecap="round"><path d="M12 1.6v3"/><path d="M12 19.4v3"/><path d="M1.6 12h3"/><path d="M19.4 12h3"/><path d="M4.6 4.6l2.1 2.1"/><path d="M17.3 17.3l2.1 2.1"/><path d="M19.4 4.6l-2.1 2.1"/><path d="M6.7 17.3l-2.1 2.1"/></g></svg><span class="word" style="font-size:11pt">UNIK</span></div>
+      <span class="section">Quand ça marche · 2/2</span>
+    </div>
+
+    <div class="case">
+      <div class="story">
+        <p class="kicker" style="margin-top:8mm">Andros</p>
+        <h1>Un succès économique inattendu</h1>
+        <p class="body" style="margin-top:4mm">Jugées inemployables, une soixantaine de personnes présentant un autisme sévère ont été embauchées dans l'usine d'Andros à Auneau-Bleury-Saint-Symphorien. Sur les murs des ateliers, de grands tableaux blancs rassemblent pictogrammes et photos pour séquencer les tâches.<br><br>La rigueur constatée sur certaines opérations a produit des gains économiques mesurables — et une stabilité que peu de lignes de production connaissent.</p>
+        <div class="quote">« Nous y avons séquencé les tâches à réaliser avec des consignes faciles à comprendre afin que ces jeunes puissent respecter le protocole. »<span>Jean-François Dufresne</span></div>
+      </div>
+      <div class="results">
+        <h2>Résultats</h2>
+        <ul>
+          <li>Amélioration de la qualité sur certaines opérations</li>
+          <li>Très faible turnover</li>
+          <li>Gains de productivité sur des postes adaptés</li>
+        </ul>
+        <div class="kv"><b>60</b><span>personnes présentant un autisme sévère recrutées à l'usine d'Auneau</span></div>
+      </div>
+    </div>
+    <p class="src" style="margin-top:4mm">Source : presse économique et associative — cas d'école documenté.</p>
+  </div>
+  <div class="foot"><span class="slogan">UNIK · Chaque singularité renforce le collectif</span><span class="num">05</span></div>
+</section>
+
+<!-- 6 · POURQUOI PAS VOUS -->
+<section class="page">
+  <div class="content">
+    <div class="head">
+      <div class="brand"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" fill="#FF9008"/><g stroke="#7C0B4D" stroke-width="1.8" stroke-linecap="round"><path d="M12 1.6v3"/><path d="M12 19.4v3"/><path d="M1.6 12h3"/><path d="M19.4 12h3"/><path d="M4.6 4.6l2.1 2.1"/><path d="M17.3 17.3l2.1 2.1"/><path d="M19.4 4.6l-2.1 2.1"/><path d="M6.7 17.3l-2.1 2.1"/></g></svg><span class="word" style="font-size:11pt">UNIK</span></div>
+      <span class="section">La proposition</span>
+    </div>
+    <h1 style="margin-top:7mm">Alors, pourquoi pas vous&nbsp;?</h1>
+    <p class="lead" style="margin-top:3mm; max-width:150mm">Un projet inclusif ne profite pas qu'à la personne accueillie : il transforme la façon dont l'équipe travaille ensemble, et ce qu'elle accepte de montrer d'elle-même.</p>
+
+    <div class="benefits">
+      <span class="chip">Ouverture d'esprit</span>
+      <span class="chip">Solidarité entre collègues</span>
+      <span class="chip">Respect de la différence</span>
+      <span class="chip">Fierté d'appartenance</span>
+      <span class="chip">Engagement collectif</span>
+      <span class="chip">Fidélisation des talents</span>
+    </div>
+
+    <div class="offer">
+      <div>
+        <h3>Un accompagnement clé en main</h3>
+        <p>Diagnostic et adaptations du poste avec l'ergothérapeute, ateliers collectifs avec l'équipe, appui aux managers, suivi et mesure d'impact. Un seul interlocuteur, du premier entretien à la restitution.</p>
+      </div>
+      <div class="big">3<br><span style="font-size:9pt;font-weight:700;color:#fff;letter-spacing:.1em">ÉTAPES<br>DISSOCIABLES</span></div>
+    </div>
+
+    <p class="src" style="margin-top:5mm">Chaque étape peut être engagée séparément, selon ce que vous vivez aujourd'hui.</p>
+  </div>
+  <div class="foot"><span class="slogan">UNIK · Chaque singularité renforce le collectif</span><span class="num">06</span></div>
+</section>
+
+<!-- 7 · PUBLICS -->
+<section class="page">
+  <div class="content">
+    <div class="head">
+      <div class="brand"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" fill="#FF9008"/><g stroke="#7C0B4D" stroke-width="1.8" stroke-linecap="round"><path d="M12 1.6v3"/><path d="M12 19.4v3"/><path d="M1.6 12h3"/><path d="M19.4 12h3"/><path d="M4.6 4.6l2.1 2.1"/><path d="M17.3 17.3l2.1 2.1"/><path d="M19.4 4.6l-2.1 2.1"/><path d="M6.7 17.3l-2.1 2.1"/></g></svg><span class="word" style="font-size:11pt">UNIK</span></div>
+      <span class="section">Nos publics</span>
+    </div>
+    <h1 style="margin-top:7mm">Nos publics cibles</h1>
+    <p class="lead" style="margin-top:3mm">Le parcours s'adresse à ceux qui vivent la situation — et à ceux qui la rendent possible.</p>
+
+    <div class="publics">
+      <div class="public">
+        <div class="ico"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#B45800" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="7.5" r="3.4"/><path d="M5 20.5c0-3.7 3.1-6 7-6s7 2.3 7 6"/></svg></div>
+        <div><h3>Salariés en situation de handicap</h3><p>Intégration, adaptation du poste, maintien en emploi.</p></div>
+      </div>
+      <div class="public">
+        <div class="ico"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#B45800" stroke-width="1.7" stroke-linecap="round"><circle cx="8.5" cy="8" r="3"/><path d="M2.5 20c0-3.3 2.6-5.4 6-5.4 1.2 0 2.3.3 3.2.8"/><circle cx="17" cy="14" r="2.4"/><path d="M12.5 21c0-2.6 2-4.2 4.5-4.2s4.5 1.6 4.5 4.2"/></svg></div>
+        <div><h3>Managers et encadrants</h3><p>Entretiens individuels ou collectifs, montée en compétence.</p></div>
+      </div>
+      <div class="public">
+        <div class="ico"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#B45800" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="6" r="2.6"/><circle cx="4.8" cy="16" r="2.6"/><circle cx="19.2" cy="16" r="2.6"/><path d="M10.4 8.2 6.4 13.8"/><path d="M13.6 8.2l4 5.6"/><path d="M7.4 16h9.2"/></svg></div>
+        <div><h3>Équipe de travail</h3><p>Ateliers collectifs, parole encadrée, jeux de coopération.</p></div>
+      </div>
+      <div class="public">
+        <div class="ico"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#B45800" stroke-width="1.7" stroke-linecap="round"><path d="M4 20V6.5L12 3l8 3.5V20"/><path d="M9 20v-5h6v5"/><path d="M8 9h2M14 9h2M8 12.5h2M14 12.5h2"/><path d="M2.5 20h19"/></svg></div>
+        <div><h3>Entreprises et organismes publics</h3><p>Politique d'inclusion, culture managériale, indicateurs RSE.</p></div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span class="slogan">UNIK · Chaque singularité renforce le collectif</span><span class="num">07</span></div>
+</section>
+
+<!-- 8 · OBJECTIFS -->
+<section class="page">
+  <div class="content">
+    <div class="head">
+      <div class="brand"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" fill="#FF9008"/><g stroke="#7C0B4D" stroke-width="1.8" stroke-linecap="round"><path d="M12 1.6v3"/><path d="M12 19.4v3"/><path d="M1.6 12h3"/><path d="M19.4 12h3"/><path d="M4.6 4.6l2.1 2.1"/><path d="M17.3 17.3l2.1 2.1"/><path d="M19.4 4.6l-2.1 2.1"/><path d="M6.7 17.3l-2.1 2.1"/></g></svg><span class="word" style="font-size:11pt">UNIK</span></div>
+      <span class="section">Les objectifs</span>
+    </div>
+    <h1 style="margin-top:7mm">Objectifs du projet</h1>
+
+    <div class="goals">
+      <div class="goal"><span class="n">01</span><p><strong>Sécuriser l'intégration et le maintien</strong> dans l'emploi : développer l'employabilité, prévenir la désinsertion professionnelle.</p></div>
+      <div class="goal"><span class="n">02</span><p><strong>Permettre à l'équipe de se rencontrer elle-même</strong> sur ce qu'elle veut être face au handicap.</p></div>
+      <div class="goal"><span class="n">03</span><p><strong>Accueillir et intégrer</strong> une personne en situation de handicap au sein d'une équipe.</p></div>
+      <div class="goal"><span class="n">04</span><p><strong>Faire évoluer les pratiques managériales</strong> et la culture d'entreprise, en sensibilisant aux handicaps visibles et invisibles.</p></div>
+      <div class="goal"><span class="n">05</span><p><strong>Renforcer l'inclusion et la qualité de vie au travail</strong> — pour que la différence devienne une force du collectif.</p></div>
+    </div>
+  </div>
+  <div class="foot"><span class="slogan">UNIK · Chaque singularité renforce le collectif</span><span class="num">08</span></div>
+</section>
+
+<!-- 9 · METHODE -->
+<section class="page">
+  <div class="content">
+    <div class="head">
+      <div class="brand"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" fill="#FF9008"/><g stroke="#7C0B4D" stroke-width="1.8" stroke-linecap="round"><path d="M12 1.6v3"/><path d="M12 19.4v3"/><path d="M1.6 12h3"/><path d="M19.4 12h3"/><path d="M4.6 4.6l2.1 2.1"/><path d="M17.3 17.3l2.1 2.1"/><path d="M19.4 4.6l-2.1 2.1"/><path d="M6.7 17.3l-2.1 2.1"/></g></svg><span class="word" style="font-size:11pt">UNIK</span></div>
+      <span class="section">La méthode</span>
+    </div>
+    <h1 style="margin-top:7mm">Un parcours en 3 étapes dissociables</h1>
+
+    <div class="steps">
+      <div class="step">
+        <span class="tag">DIAGNOSTIC</span>
+        <div class="num">01</div>
+        <h3>Diagnostic &amp; analyse</h3>
+        <p>Ergothérapeute, analyse de poste et de l'environnement, préconisations techniques et organisationnelles concrètes.</p>
+      </div>
+      <div class="step">
+        <span class="tag">ACCOMPAGNEMENT</span>
+        <div class="num">02</div>
+        <h3>Accompagnement collectif et/ou individuel</h3>
+        <p>Bonnes pratiques, sensibilisation aux handicaps visibles et invisibles, appui aux managers, ateliers avec l'équipe.</p>
+      </div>
+      <div class="step">
+        <span class="tag">SUIVI</span>
+        <div class="num">03</div>
+        <h3>Suivi &amp; mesure d'impact</h3>
+        <p>Suivi à 3 et 6 mois, indicateurs partagés, capitalisation des acquis pour ancrer durablement les pratiques.</p>
+      </div>
+    </div>
+
+    <div class="closing">
+      <div class="line">De l'analyse à l'impact, à votre rythme&nbsp;!</div>
+      <div class="who"><strong>Amandine Barlatier</strong> · coach professionnelle<br><strong>Anaïs Rognard</strong> · ergothérapeute</div>
+    </div>
+    <p class="src" style="margin-top:6mm">Document non contractuel · UNIK — parcours d'inclusion et de maintien dans l'emploi</p>
+  </div>
+  <div class="foot"><span class="slogan">UNIK · Chaque singularité renforce le collectif</span><span class="num">09</span></div>
+</section>
+
+</body>
+</html>

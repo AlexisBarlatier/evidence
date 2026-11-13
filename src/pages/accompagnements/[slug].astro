@@ -1,7 +1,6 @@
 ---
 import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import SlideGallery from '../../components/SlideGallery.astro';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
 export async function getStaticPaths() {
@@ -32,20 +31,29 @@ const { Content } = await render(entry);
       <Content />
     </div>
 
-    {entry.data.galerie && <SlideGallery {...entry.data.galerie} />}
-
     {entry.data.dossier && (
       <div class="mt-10 rounded-lg border border-sand-200 bg-sand-50 p-6">
-        <h2 class="font-serif text-xl">Le dossier complet</h2>
-        <p class="mt-2 text-sm text-ink-soft">
-          Contexte, méthode, calendrier, financements et présentation des intervenantes : le parcours en détail.
+        <h2 class="font-serif text-xl">Le parcours UNIK en 9 pages</h2>
+        <p class="mt-2 max-w-2xl text-sm text-ink-soft">
+          Contexte, freins, deux cas documentés, objectifs et méthode : le support de présentation du parcours, page par page.
         </p>
-        <a
-          href={`${base}${entry.data.dossier}`}
-          class="mt-4 inline-block text-sm font-medium text-petrol-600 hover:underline"
-        >
-          Télécharger le dossier (PDF) →
-        </a>
+        <div class="mt-4 flex flex-wrap items-center gap-x-6 gap-y-2">
+          <a
+            href={`${base}${entry.data.dossier}`}
+            target="_blank"
+            rel="noopener"
+            class="text-sm font-medium text-petrol-600 hover:underline"
+          >
+            Ouvrir le PDF →
+          </a>
+          <a
+            href={`${base}${entry.data.dossier}`}
+            download
+            class="text-sm text-ink-soft hover:text-petrol-600"
+          >
+            Télécharger (9 pages)
+          </a>
+        </div>
       </div>
     )}
 

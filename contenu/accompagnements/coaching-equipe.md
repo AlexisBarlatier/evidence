@@ -3,29 +3,7 @@ titre: Coaching d'équipe
 resume: Faire émerger les non-dits, remettre du sens et de la clarté dans la façon dont le collectif travaille ensemble.
 pourQui: Équipes, collectifs projet, comités de direction
 ordre: 2
-dossier: /dossier-parcours-inclusion.pdf
-galerie:
-  titre: "Le parcours UNIK en 9 pages"
-  intro: "Le support de présentation du parcours d'inclusion, page par page. Cliquez sur une page pour l'agrandir."
-  slides:
-    - src: /images/unik/parcours-inclusion-01.jpg
-      legende: "UNIK — parcours d'inclusion et de maintien dans l'emploi"
-    - src: /images/unik/parcours-inclusion-02.jpg
-      legende: "Quel est le contexte ?"
-    - src: /images/unik/parcours-inclusion-03.jpg
-      legende: "Quelques raisons qui l'expliquent"
-    - src: /images/unik/parcours-inclusion-04.jpg
-      legende: "Schneider Electric : un alternant malvoyant devient responsable des relations sociales"
-    - src: /images/unik/parcours-inclusion-05.jpg
-      legende: "Andros : un succès économique inattendu"
-    - src: /images/unik/parcours-inclusion-06.jpg
-      legende: "Alors, pourquoi pas vous ?"
-    - src: /images/unik/parcours-inclusion-07.jpg
-      legende: "Nos publics cibles"
-    - src: /images/unik/parcours-inclusion-08.jpg
-      legende: "Objectifs du projet"
-    - src: /images/unik/parcours-inclusion-09.jpg
-      legende: "Un parcours en 3 étapes dissociables"
+dossier: /dossier-parcours-inclusion-unik.pdf
 ---
 
 ## Ce que vous vivez aujourd'hui

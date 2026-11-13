@@ -1,8 +1,30 @@
 # Dossier « Parcours d'inclusion et de maintien dans l'emploi » — registre des versions
 
-**Version publiée et figée au 07/10/2026 : le deck d'origine d'Amandine (Canva, 17 pages 16/9), recompressé.**
+**Version publiée le 13/11/2026 : le parcours UNIK reconstruit en 9 pages 16/9 (PDF texte, 172 Ko), à partir du deck UNIK transmis par Amandine.**
 
 Toute modification ultérieure doit produire une **nouvelle version** ci-dessous, sans écraser celle-ci.
+
+---
+
+## Version publiée — 13/11/2026 — « UNIK » 9 pages
+
+| | |
+|---|---|
+| Fichier en ligne | `public/dossier-parcours-inclusion-unik.pdf` |
+| URL | https://alexisbarlatier.github.io/evidence/dossier-parcours-inclusion-unik.pdf |
+| Source éditable | `contenu/dossier/unik-parcours-9-pages.src.html` (suivi dans git) |
+| Origine | deck UNIK 9 slides transmis le 13/11/2026 (capture 3×3), **reconstruit** en HTML/CSS — texte vectoriel, aucune image de fond |
+| Pages / format | 9 pages, 841,92 × 473,04 pts (297 × 167 mm, 16/9) |
+| Poids | 172 068 octets |
+| SHA-256 | `7336165d728f2295d051527eae3bd31e8b96545cd408a7ab58159297e29911ba` |
+| Lien depuis | `/accompagnements/coaching-equipe/` (champ `dossier` du frontmatter) |
+| Recette de rendu | `print_pdf.js` de la skill `html-to-pdf-cdp` (Chrome headless, `preferCSSPageSize`) |
+| Statut | **PUBLIÉE.** Remplace le deck 17 pages comme document lié depuis la page Équipe. |
+
+Écarts assumés par rapport au deck d'origine :
+- illustration de couverture remplacée par la marque UNIK (pas d'assets sources) ;
+- « 3,5 % de taux d'emploi » remplacé par les chiffres DARES 2024 sourcés (5,1 % au sens légal, 4,0 % des effectifs assujettis) ;
+- sources ajoutées en pied de page 2.
 
 ---
 
